@@ -1,3 +1,11 @@
+/**
+ * Login.tsx
+ * --------------------------
+ * This screen allows users to log in using their email and password.
+ * It uses Formik for form handling and Yup for validation.
+ * Upon successful login, the user is navigated to the home screen.
+ */
+
 import React from "react";
 import {
   View,
@@ -9,13 +17,13 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "expo-router";
+
+// Custom UI components
 import CustomAppBar from "@/components/CustomAppBar";
 import AppTextField from "@/components/AppTextFields";
 import PrimaryButton from "@/components/PrimaryButton";
 
-// Import your custom components
-
-// Validation Schema
+// Yup validation schema for login form
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()
@@ -24,24 +32,30 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default function Login() {
-  const router = useRouter();
+  const router = useRouter(); // Used for navigation
 
   return (
     <>
+      {/* Top app bar without a back button */}
       <CustomAppBar title="Login" showBackButton={false} />
+
+      {/* Adjusts UI when keyboard is open (iOS specific behavior) */}
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-        <Text style={styles.title}>Welcome Back</Text>
+        {/* Heading and subheading */}
+        <Text style={styles.title}>Welcome</Text>
         <Text style={styles.subtitle}>Log in to continue your journey</Text>
 
+        {/* Formik handles form state, validation, and submission */}
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={LoginSchema}
           onSubmit={(values) => {
             console.log("Login values:", values);
-            // Add your login logic here
+            // Navigate to home screen on successful login
+            router.navigate("/(app)/home");
           }}
         >
           {({
@@ -53,7 +67,7 @@ export default function Login() {
             touched,
           }) => (
             <View style={styles.form}>
-              {/* Email Field */}
+              {/* Email input field with validation error display */}
               <AppTextField
                 placeholder="Email"
                 value={values.email}
@@ -63,7 +77,7 @@ export default function Login() {
                 keyboardType="email-address"
               />
 
-              {/* Password Field */}
+              {/* Password input field with secure entry */}
               <AppTextField
                 placeholder="Password"
                 value={values.password}
@@ -77,10 +91,10 @@ export default function Login() {
                 secureTextEntry
               />
 
-              {/* Login Button */}
+              {/* Submit button triggers form validation and submission */}
               <PrimaryButton text="Log In" onPress={handleSubmit} />
 
-              {/* Sign Up Redirect */}
+              {/* Link to sign up screen */}
               <Text style={styles.signupText}>
                 Don’t have an account?{" "}
                 <Text
@@ -98,6 +112,7 @@ export default function Login() {
   );
 }
 
+// Styles for the Login screen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
