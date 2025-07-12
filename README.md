@@ -1,40 +1,59 @@
-Here's a comprehensive `README.md` for your flight search application:
+Here's the restructured and enhanced README with all the components integrated:
 
 ```markdown
-# ✈️ SkySearch - Flight Booking App
+# ✈️ SkyFlights - Flight Booking App
 
 A mobile application for searching and booking flights with intuitive UI and seamless navigation.
 
 ## 📱 Features
 
-- **Flight Search**:
-  - Round-trip/One-way/Multi-city options
-  - Airport selection with smart suggestions
-  - Date picker with validation
-  - Traveler count and class selection
+### Flight Search
+- **Trip Options**: Round-trip/One-way/Multi-city selection
+- **Smart Airport Selection**: Modal picker with search suggestions
+- **Date Handling**: Validation with minimum date constraints
+- **Travel Configuration**: Passenger count and class selection
 
-- **User Flow**:
-  - Signup/Login with form validation
-  - Airport selection modal
-  - Flight results display
-  - Booking management
+### User Flow
+- **Authentication**: Secure signup/login with form validation
+- **Search Process**:
+  ```mermaid
+  graph TD
+    A[Home Screen] --> B[Select Airports]
+    B --> C[View Flight Results]
+  ```
+- **Booking Management**: Future booking viewing/cancellation
 
-- **Technical Highlights**:
-  - Redux for state management
-  - Formik + Yup for forms
-  - Expo Router for navigation
-  - Responsive design for all devices
+### Technical Highlights
+- **State Management**: Redux for shared location data
+- **Form Handling**: Formik + Yup validation
+- **Navigation**: Expo Router with type-safe params
+- **Error Handling**: Automatic retries for API failures
 
 ## 🛠 Tech Stack
 
-| Category       | Technologies                          |
-|----------------|---------------------------------------|
-| Framework      | React Native (Expo)                   |
-| State Management | Redux Toolkit                       |
-| Navigation     | Expo Router                          |
-| Form Handling  | Formik + Yup                         |
-| UI Components  | Custom-built + React Native Elements |
-| Date Handling  | Moment.js                            |
+| Category           | Technologies                          |
+|--------------------|---------------------------------------|
+| Framework          | React Native (Expo)                   |
+| State Management   | Redux Toolkit                         |
+| Navigation         | Expo Router                           |
+| Form Handling      | Formik + Yup                          |
+| UI Components      | Custom-built components               |
+| API Client         | Fetch                                 |
+
+
+## ✈️ Flight Results Screen Details
+
+**Key Features**:
+- Displays flight cards with:
+  - Airline logos
+  - Flight times (departure/arrival)
+  - Duration and stops
+  - Pricing information
+- Automatic retry mechanism (2 attempts)
+- Loading/empty/error state handling
+
+**Data Flow**:
+<img width="591" height="540" alt="image" src="https://github.com/user-attachments/assets/4102b663-e568-47d7-a27d-ec8425eb316f" />
 
 
 ## 🚀 Getting Started
@@ -47,72 +66,74 @@ A mobile application for searching and booking flights with intuitive UI and sea
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/skysearch.git
-   cd skysearch
+   git clone https://github.com/abdullahnav624/sky-flights
+   cd sky--flights
    ```
 
 2. Install dependencies:
    ```bash
-   yarn install
-   # or
    npm install
    ```
 
-3. Start the development server:
+3. Configure environment:
    ```bash
-   expo start
+   cp .env.example .env
+   #1d87572b80msh3584e2b927ed3fbp107f41jsn83f614b1a609
+   # This is my API key. If not works then probably I have reached free requests limit.
+   ```
+
+4. Start development:
+   ```bash
+   npx expo start
    ```
 
 ## 🔧 Configuration
 
-1. **Environment Variables**:
-   Create `.env` file:
-   ```env
-   API_BASE_URL=https://your-api-endpoint.com
-   GOOGLE_MAPS_API_KEY=your_key_here
-   ```
+### Environment Variables
+`.env` file requirements:
+```ini
+API_BASE_URL=https://your-flight-api.com
+MAPS_API_KEY=your_google_maps_key
+MAX_RETRIES=2 # Flight search retry attempts
+```
 
-2. **Redux Setup**:
-   The store is pre-configured with:
-   - Location state management
-   - Persistence (optional)
+### Redux Setup
+The store includes:
+- Location state persistence
+- Middleware for API calls
+- Slice for airport data
 
-## 🧪 Testing
+## � Testing
 
-Run Jest tests:
+Run test suite:
 ```bash
 yarn test
 ```
 
+Test coverage includes:
+- Form validation
+- Redux actions
+- Utility functions
+
 ## 📄 License
 
-This project is licensed under the MIT License.
+MIT License
 
 ## 🤝 Contributing
 
-1. Fork the project
+1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## ✉️ Contact
+**Code Standards**:
+- TypeScript strict mode
+- ESLint + Prettier enforced
+- Meaningful component documentation
 
-For questions or support, contact: abdullahnaveed044@gmail.com
+## ✉️ Support
+
+For issues or questions: abdullahnaveed044@gmail.com
 ```
 
-### Key Sections Explained:
-
-1. **Features**: Highlights core user-facing functionality
-2. **Tech Stack**: Clear table of technologies used
-3. **Project Structure**: Visual directory tree with explanations
-4. **Getting Started**: Quick setup instructions
-5. **Configuration**: Important setup notes
-6. **Testing/CI**: Basic testing information
-7. **License/Contact**: Standard project metadata
-
-Would you like me to:
-1. Add screenshots of the app interface?
-2. Include more detailed API documentation?
-3. Add a development roadmap section?
-4. Include troubleshooting tips for common issues?
