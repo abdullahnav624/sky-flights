@@ -34,7 +34,8 @@ const CustomAppBar: React.FC<CustomAppBarProps> = ({
           <View style={styles.icon} />
         )}
         <Text style={styles.title}>{title}</Text>
-        <View style={styles.icon} /> {/* right-side space for symmetry */}
+        {/* Right-side space for symmetry */}
+        <View style={styles.icon} />
       </View>
     </View>
   );

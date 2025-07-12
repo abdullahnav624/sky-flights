@@ -30,7 +30,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 import TravelerClassSelector from "@/components/TravelerClassSelector";
 
 // Redux actions and types
-import { getLocations } from "@/services/locationService";
+import { getAirports } from "@/services/AirportService";
 import {
   setFromLocations,
   setToLocations,
@@ -151,10 +151,10 @@ export default function HomeScreen() {
 
     try {
       // Fetch location data
-      const fromRes = await getLocations(from);
+      const fromRes = await getAirports(from);
       if (fromRes.status) dispatch(setFromLocations(fromRes.data));
 
-      const toRes = await getLocations(to);
+      const toRes = await getAirports(to);
       if (toRes.status) dispatch(setToLocations(toRes.data));
 
       // Navigate to results
